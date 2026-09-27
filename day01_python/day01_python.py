@@ -1,3 +1,23 @@
+"""Task 1
+Print the total marks.
+Task 2
+Print how many marks are present.
+Task 3
+Calculate and print the average.
+Task 4
+Print the highest mark.
+Task 5
+Print the lowest mark.
+Task 6
+Use a loop to print only the marks that are 80 or above.
+Task 7
+Create a function: def analyze_marks(marks):
+Total: ...
+Count: ...
+Average: ...
+Highest: ...
+Lowest: ..."""
+
 def analyze_marks(marks):
     print("Total:",sum(marks))
     print("Count:",len(marks))
