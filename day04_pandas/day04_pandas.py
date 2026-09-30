@@ -1,31 +1,22 @@
 
 """1. Inspect the dataset
 Print the first 3 rows, shape, column names, and data types.
-
 2. Select columns
 Print only the Name column, then print Name and Marks together.
-
 3. Select rows
 Print the first row and the first three rows using iloc.
-
 4. Filter marks
 Display all students who scored at least 80.
-
 5. Filter by department
 Display only students whose Department is "CSE".
-
 6. Combine conditions
 Display students who scored at least 80 AND are 19 years old.
-
 7. Calculate statistics
 Find the mean, median, highest, and lowest marks.
-
 8. Find the topper
 Display the complete row of the student with the highest marks.
-
 9. Count departments
 Count how many students are in each department using value_counts().
-
 10. Create a CSV
 Save the DataFrame to "students.csv" without saving the index."""
 
