@@ -24,3 +24,101 @@ print("MAE:",mae)
 print("Squared errors:",square)
 print("MSE:",mse)
 print("RMSE:",np.round(rmse,2))
+
+data = {
+    "StudyHours": [1, 2, 3, 4, 5, 6, 7, 8, 2, 4, 6, 7, 3, 9, 5],
+    "Attendance": [60, 65, 70, 75, 80, 85, 90, 95, 62, 78, 88, 92, 72, 96, 82],
+    "PreviousMarks": [35, 40, 45, 50, 55, 60, 65, 80, 42, 52, 68, 72, 48, 88, 58],
+    "FinalMarks": [38, 42, 48, 53, 59, 65, 72, 84, 43, 56, 70, 75, 50, 91, 62]
+}
+
+df = pd.DataFrame(data)
+
+X=df[["StudyHours","Attendance","PreviousMarks"]]
+y=df["FinalMarks"]
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=42)
+model=LinearRegression()
+model.fit(X_train,y_train)
+predictions=model.predict(X_test)
+print("Predictions:",np.round(predictions,2))
+print("Actual value:",y_test.to_numpy())
+
+mae=mean_absolute_error(y_test,predictions)
+print("MAE:",np.round(mae,2))
+mse=mean_squared_error(y_test,predictions)
+print("MSE:",np.round(mse,2))
+rmse=np.sqrt(mse)
+print("RMSE",np.round(rmse,2))
+r2=r2_score(y_test,predictions)
+print("R2:",np.round(r2,2))
+
+
+"""Exercise 1 — Calculate errors manually
+
+Given:
+
+actual = np.array([50, 60, 70, 80])
+predicted = np.array([48, 63, 68, 75])
+
+Calculate manually using NumPy:
+
+Absolute errors
+MAE
+Squared errors
+MSE
+RMSE
+
+Don't use scikit-learn for this exercise.
+
+Exercise 2 — Use scikit-learn
+
+Using the student dataset:
+
+Create X and y.
+Perform the train/test split.
+Train LinearRegression.
+Generate predictions.
+Calculate:
+MAE
+MSE
+RMSE
+R²
+
+Print all four.
+
+Exercise 3 — Explain your model
+
+After getting your results, answer:
+
+What does your MAE mean in terms of marks? - MAE give mean of the error marks of the prediction 
+Why is RMSE different from MAE? - In RMSE we square root the mse where in mae we take mean of the absolute diff
+Why is MSE usually larger numerically than RMSE? - Yes because 
+What does your R² tell you?
+Does your R² mean your model is "X% accurate"? Explain.
+Exercise 4 — Compare two predictions
+
+Use:
+
+actual = np.array([50, 60, 70, 80])
+
+model_A = np.array([51, 59, 71, 79])
+
+model_B = np.array([40, 65, 75, 90])
+
+Calculate MAE and RMSE for both models.
+
+Then answer:
+
+Which model would you choose based on these metrics, and why?
+
+Exercise 5 — Think like an ML engineer
+
+Suppose you get:
+
+Training MAE = 1.2
+Testing MAE  = 8.7
+
+What could be happening?
+
+Explain in your own words."""
