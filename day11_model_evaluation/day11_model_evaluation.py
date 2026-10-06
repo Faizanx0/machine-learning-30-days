@@ -89,8 +89,12 @@ prediction = model.predict(X_test)
 print("Actual Value:",y_test.to_numpy())
 print("Predicted Value:",prediction)
 
-accuracy = model.predict_proba(X_test)
-print("Prediction Accuracy:\n",np.round(accuracy,2))
+probability = model.predict_proba(X_test)
+print("Prediction Probability:\n",np.round(probability,2))
+
+accuracy = accuracy_score(y_test,prediction)
+print("Accuracy:",np.round(accuracy,2))
+
 
 new_student = pd.DataFrame({
     "StudyHours" : [6],
@@ -99,8 +103,8 @@ new_student = pd.DataFrame({
 })
 
 new_prediction = model.predict(new_student)
-new_accuracy = model.predict_proba(new_student)
-print("New Prediction:",new_prediction,)
+new_probability = model.predict_proba(new_student)
+print("New Prediction:",new_prediction)
 status=["Pass" if new_prediction==1 else "Fail"]
 print("Student Status:",status)
-print("New Accuracy:",np.round(new_accuracy,2))
+print("New Probability:",np.round(new_probability,2))
