@@ -48,9 +48,9 @@ predicted = np.array([1, 0, 0, 0, 1, 1, 1, 0])
 
 cm = confusion_matrix(actual,predicted)
 TP=cm[0][0]
-TN=cm[1][1]
-FP=cm[1][0]
 FN=cm[0][1]
+FP=cm[1][0]
+TN=cm[1][1]
 print("Confusion Matrix:\n",cm)
 print("TP:",TP)
 print("TN",TN)
