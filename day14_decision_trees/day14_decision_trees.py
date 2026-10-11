@@ -51,6 +51,6 @@ new_student = pd.DataFrame({
 })
 
 new_prediction = model.predict(new_student)
-status = ["Pass" if new_prediction==1 else "Fail"]
+status = "Pass" if new_prediction else "Fail"
 print("New Prediction:",new_prediction)
 print("Status:",status)
