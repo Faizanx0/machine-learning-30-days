@@ -11,7 +11,7 @@ Use StudyHours=7, Attendance=90, PreviousMarks=75 and print Pass or Fail.
 Change n_neighbors from 5 to 3, then to 7. Compare the test accuracies. - All the accuracies are same 
 
 5. Answer the concept questions
-Why does KNN benefit from scaling? What might happen when K=1? - A scaling put all feature into equal footing so it help KNN becoz we use the numerical eculid formula  
+Why does KNN benefit from scaling? What might happen when K=1? - A scaling put all feature into equal footing so it help KNN becoz we use the numerical eculid formula . It check only one nearest neighbour and based on one neighbour it predicted
 """
 
 import pandas as pd
