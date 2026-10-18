@@ -1,3 +1,26 @@
+"""
+1.Build the dataset
+Use the customer dataset from Step 1.
+
+2. Separate features and target
+Create X and y, with Churn as the target.
+
+3. Split the data
+Use 25% for testing, random_state=42, and stratify=y.
+
+4. Build numerical preprocessing
+Use median imputation followed by StandardScaler.
+
+5. Build categorical preprocessing
+Use most-frequent imputation followed by OneHotEncoder.
+
+6. Build and evaluate the Pipeline
+Combine the ColumnTransformer and LogisticRegression, then print accuracy and the confusion matrix.
+
+7. Predict a new customer
+Predict churn for Tenure=2, MonthlyCharges=95, SupportCalls=6, ContractType='Monthly'. Pass a DataFrame with the same feature columns.
+"""
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -41,35 +64,40 @@ numerical_pipeline = Pipeline([
     ])
     
 categorical_pipeline = Pipeline([
-    ("imputer",SimpleImputer(strategy="Most_frequent")),
-    ("encoder",OneHotEncoder(handle_unkown="ignore"))
+    ("imputer",SimpleImputer(strategy="most_frequent")),
+    ("encoder",OneHotEncoder(handle_unknown="ignore"))
     ])
     
 preprocessor = ColumnTransformer([
     ("num",numerical_pipeline,numerical_features),
-    ("cat",numerical_pipeline,categorical_features)
+    ("cat",categorical_pipeline,categorical_features)
+    ])
+    
+model = Pipeline([
+    ("preprocessing",preprocessor),
+    ("classifier",LogisticRegression(max_iter=1000))
     ])
 
+model.fit(X_train,y_train)
 
-"""
-1.Build the dataset
-Use the customer dataset from Step 1.
+prediction = model.predict(X_test)
+print("Predicted Value:",prediction)
+print("Actual Value:",y_test.to_numpy())
+accuracy = accuracy_score(y_test,prediction)
+print("Accuracy:",accuracy)
+cm = confusion_matrix(y_test,prediction)
+print("Confusion Matrix:\n",cm)
 
-2. Separate features and target
-Create X and y, with Churn as the target.
-
-3. Split the data
-Use 25% for testing, random_state=42, and stratify=y.
-
-4. Build numerical preprocessing
-Use median imputation followed by StandardScaler.
-
-5. Build categorical preprocessing
-Use most-frequent imputation followed by OneHotEncoder.
-
-6. Build and evaluate the Pipeline
-Combine the ColumnTransformer and LogisticRegression, then print accuracy and the confusion matrix.
-
-7. Predict a new customer
-Predict churn for Tenure=2, MonthlyCharges=95, SupportCalls=6, ContractType='Monthly'. Pass a DataFrame with the same feature columns.
-"""
+New_Data = pd.DataFrame({
+    "Tenure": [2],
+    "MonthlyCharges" : [95],
+    "SupportCalls" : [6],
+    "ContractType" : "Monthly"
+    })
+    
+new_prediction = model.predict(New_Data)
+print("Customer Prediction:",new_prediction)
+if new_prediction==1:
+    print("Customer will Leaves!")
+else:
+    print("Customer will Stays!")
