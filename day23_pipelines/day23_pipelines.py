@@ -95,7 +95,7 @@ New_Data = pd.DataFrame({
     "ContractType" : "Monthly"
     })
     
-new_prediction = model.predict(New_Data)
+new_prediction = model.predict(New_Data)[0]
 print("Customer Prediction:",new_prediction)
 if new_prediction==1:
     print("Customer will Leaves!")
