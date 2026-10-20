@@ -60,7 +60,7 @@ preprocessor = ColumnTransformer([
     
 model = Pipeline([
     ("preprocessing",preprocessor),
-    ("classifier",LogisticRegression())
+    ("classifier",LogisticRegression(max_iter=1000))
     ])
 
 param_distributions = {
