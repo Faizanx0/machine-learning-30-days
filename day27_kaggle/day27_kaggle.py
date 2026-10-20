@@ -50,7 +50,7 @@ df = pd.DataFrame(data)
 X = df.drop("Churn",axis=1)
 y = df["Churn"]
 
-print("Class Distribution:",y.value_counts())
+print("Class Distribution:\n",y.value_counts())
 
 numerical_feature = ["Tenure","MonthlyCharges","SupportCalls"]
 categorical_feature = ["ContractType"]
