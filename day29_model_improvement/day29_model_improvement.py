@@ -128,7 +128,7 @@ print("Best Cross Validation F1:",search.best_score_)
 print("Tuned Prediction:",tuned_prediction)
 print("Actual Value    :",y_test.to_numpy())
 
-def evalute_model(model,actual,predict):
+def evaluate_model(model,actual,predict):
     print(f"Model = {model}")
     print("Accuracy  :",np.round(accuracy_score(actual,predict),2))
     print("Precision :",np.round(precision_score(actual,predict,zero_division=0),2))
